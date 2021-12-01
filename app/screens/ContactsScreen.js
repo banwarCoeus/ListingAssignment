@@ -142,6 +142,7 @@ export default class ContactsScreen extends React.Component {
             justifyContent: "space-between",
             width: "90%",
             alignSelf: "center",
+            paddingVertical: 10,
           }}
         >
           <Text style={{ color: colors.medium }}>

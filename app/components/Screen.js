@@ -1,6 +1,13 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import {
+  Platform,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from "react-native";
 import Constants from "expo-constants";
+import colors from "../config/colors";
 
 export default class Screen extends React.Component {
   constructor(props) {
@@ -9,20 +16,29 @@ export default class Screen extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          { backgroundColor: this.props.statusBarColor || "white" },
+        ]}
+      >
+        <StatusBar
+          backgroundColor={this.props.statusBarColor || "white"}
+          barStyle={this.props.statusBarTheme || "dark-content"}
+        />
         <View style={[styles.view, this.props.style]}>
           {this.props.children}
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
+    backgroundColor: colors.white,
     flex: 1,
-    paddingTop: Constants.statusBarHeight,
+    paddingTop: Platform.OS === "ios" ? Constants.statusBarHeight : 0,
   },
   view: {
     flex: 1,

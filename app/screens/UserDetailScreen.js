@@ -1,12 +1,22 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Alert,
+} from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as Clipboard from "expo-clipboard";
 
 import colors from "../config/colors";
 import contactsApi from "../api/listings";
 import Header from "../components/header/Header";
 import InfoItem from "../components/InfoItem";
 import Screen from "../components/Screen";
-import { ScrollView } from "react-native-gesture-handler";
 
 const accountInfoItems = [
   {
@@ -69,7 +79,11 @@ export default class UserDetailScreen extends React.Component {
 
   render() {
     return (
-      <Screen>
+      <Screen
+        statusBarColor={colors.purple}
+        statusBarTheme="light-content"
+        style={{ backgroundColor: "white" }}
+      >
         <Header
           title={""}
           headerTextStyle={{ color: colors.white }}
@@ -79,6 +93,7 @@ export default class UserDetailScreen extends React.Component {
           onLeftIconPress={() => this.props.navigation.goBack()}
           headerContainerStyle={{
             backgroundColor: colors.purple,
+            elevation: 0,
           }}
         />
         <View style={styles.headerContainer}>
@@ -94,7 +109,32 @@ export default class UserDetailScreen extends React.Component {
         </View>
         <View style={styles.detailsConatiner}>
           <Text style={styles.name}>{this.state.data?.name || ""}</Text>
-          <Text style={styles.email}>{this.state.data?.blog || ""}</Text>
+          {this.state.data?.blog != null && this.state.data?.blog != "" ? (
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginTop: 10,
+              }}
+            >
+              <Text style={styles.email}>{this.state.data?.blog || ""} </Text>
+              <TouchableOpacity
+                onPress={() => {
+                  Clipboard.setString(this.state.data?.blog);
+                  Alert.alert(
+                    "Copy Blog",
+                    "Link to the blog has been successfully copied!"
+                  );
+                }}
+              >
+                <MaterialCommunityIcons
+                  name="content-copy"
+                  color={colors.purple}
+                  size={20}
+                />
+              </TouchableOpacity>
+            </View>
+          ) : null}
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.accountDetailsContainer}>
@@ -129,7 +169,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     borderBottomColor: colors.medium,
   },
-  email: { marginTop: 10, color: colors.medium },
+  email: { color: colors.medium, fontWeight: "500" },
   headerContainer: {
     width: "100%",
     height: 125,
