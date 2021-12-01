@@ -10,26 +10,31 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const accountInfoItems = [
   {
+    key: "property_1",
     title: "Twitter",
     param: "twitter_username",
     icon: "twitter",
   },
   {
+    key: "property_2",
     title: "Location",
     param: "location",
     icon: "google-maps",
   },
   {
+    key: "property_3",
     title: "Company",
     param: "company",
     icon: "office-building",
   },
   {
+    key: "property_4",
     title: "Followers",
     param: "followers",
     icon: "account-group",
   },
   {
+    key: "property_5",
     title: "Following",
     param: "following",
     icon: "account-multiple-plus",
@@ -96,6 +101,7 @@ export default class UserDetailScreen extends React.Component {
             <Text style={styles.accountDetailsHeader}>Account Info</Text>
             {accountInfoItems.map((item, index) => (
               <InfoItem
+                key={item.key}
                 title={item.title}
                 subTitle={
                   this.state.data?.[item.param] || "Information not available"
