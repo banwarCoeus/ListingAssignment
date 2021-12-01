@@ -9,7 +9,11 @@ export default class HeaderText extends React.Component {
   }
 
   render() {
-    return <Text style={styles.text}>{this.props.children}</Text>;
+    return (
+      <Text style={[styles.text, this.props.headerTextStyle]}>
+        {this.props.children}
+      </Text>
+    );
   }
 }
 

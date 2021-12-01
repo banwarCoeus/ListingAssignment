@@ -32,7 +32,7 @@ export default class SearchBar extends React.Component {
         <TouchableWithoutFeedback onPress={this.props.onClose}>
           <MaterialCommunityIcons
             name="close-circle-outline"
-            size={25}
+            size={23}
             color={colors.medium}
             style={styles.icon}
           />
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     borderColor: colors.medium,
     borderRadius: 10,
-    borderWidth: 2,
+    // borderWidth: 2,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     alignSelf: "center",
-    margin: 5,
+    marginVertical: 5,
+    marginEnd: 11,
   },
   input: {
     flex: 1,

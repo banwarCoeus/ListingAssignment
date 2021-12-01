@@ -1,5 +1,12 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
 
@@ -10,29 +17,32 @@ export default class ListItem extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.imageContiner}>
-          <Image source={{ uri: this.props.imageUrl }} style={styles.image} />
-          <View
-            style={[
-              styles.status,
-              {
-                backgroundColor: this.props.activeStatus
-                  ? "#F64A4D"
-                  : "#40B91E",
-              },
-            ]}
-          />
+      <TouchableWithoutFeedback onPress={this.props.onPress}>
+        <View style={styles.container}>
+          <View style={styles.imageContiner}>
+            <Image source={{ uri: this.props.imageUrl }} style={styles.image} />
+            <View
+              style={[
+                styles.status,
+                {
+                  backgroundColor: this.props.activeStatus
+                    ? "#F64A4D"
+                    : "#40B91E",
+                },
+              ]}
+            />
+          </View>
+          <View style={styles.detailsContainer}>
+            <Text style={styles.title} numberOfLines={1}>
+              {this.props.title}
+            </Text>
+            <Text style={styles.subTitle} numberOfLines={2}>
+              {this.props.subtitle}
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color={colors.medium} />
         </View>
-        <View style={styles.detailsContainer}>
-          <Text style={styles.title} numberOfLines={1}>
-            {this.props.title}
-          </Text>
-          <Text style={styles.subTitle} numberOfLines={2}>
-            {this.props.subtitle}
-          </Text>
-        </View>
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import contactsApi from "../api/listings";
 import Header from "../components/header/Header";
 import ListItem from "../components/ListItem";
+import routes from "../navigation/routes";
 import Screen from "../components/Screen";
 import {
   ActivityIndicator,
@@ -12,6 +13,7 @@ import {
   Text,
   View,
 } from "react-native";
+import colors from "../config/colors";
 
 export default class ContactsScreen extends React.Component {
   constructor(props) {
@@ -23,9 +25,11 @@ export default class ContactsScreen extends React.Component {
       loading: false,
       error: false,
       data: [],
+      totalItems: 0,
     };
     this.timeOut = null;
     this.onEndReachedCalledDuringOnMomentum = true;
+    this.flatlistRef = React.createRef();
   }
 
   componentDidMount() {
@@ -41,8 +45,8 @@ export default class ContactsScreen extends React.Component {
         this.state.page + 1
       );
       this.onEndReachedCalledDuringOnMomentum = true;
+      this.setState({ page: this.state.page + 1 });
     }
-    this.setState({ page: this.state.page + 1 });
   };
 
   onRefreshCalled = () => {
@@ -61,10 +65,16 @@ export default class ContactsScreen extends React.Component {
 
     this.setState({ error: false });
     if (args[1]) {
-      this.setState({ data: [...this.state.data, ...response.data.items] });
+      this.setState({
+        data: [...this.state.data, ...response.data.items],
+        totalItems: response.data.total_count,
+      });
       return;
     }
-    this.setState({ data: response.data.items });
+    this.setState({
+      data: response.data.items,
+      totalItems: response.data.total_count,
+    });
   };
 
   render() {
@@ -72,6 +82,7 @@ export default class ContactsScreen extends React.Component {
       <Screen>
         <Header
           title={"Contacts"}
+          leftIconName={"menu"}
           showSearch={true}
           placeholder={"Search user"}
           onSearch={(keyword) => {
@@ -80,6 +91,7 @@ export default class ContactsScreen extends React.Component {
             this.timeOut = setTimeout(() => {
               this.setState({ page: 1 });
               this.requestContactsList(keyword, false, 1);
+              this.flatlistRef.current.scrollToOffset(0, true);
             }, 1000);
           }}
           onSearchClose={() => {
@@ -104,12 +116,18 @@ export default class ContactsScreen extends React.Component {
           keyExtractor={(listItem) => listItem.id.toString()}
           renderItem={({ item }) => (
             <ListItem
-              imageUrl={item.avatar_url}
               activeStatus={item.site_admin}
-              title={item.login}
+              imageUrl={item.avatar_url}
+              onPress={() =>
+                this.props.navigation.navigate(routes.USER_DETAILS, {
+                  detail_url: item.url,
+                })
+              }
               subtitle={item.node_id}
+              title={item.login}
             />
           )}
+          ref={this.flatlistRef}
           refreshing={this.state.refreshing}
           onRefresh={this.onRefreshCalled}
           onEndReached={this.onEndReachedCalled}
@@ -118,6 +136,19 @@ export default class ContactsScreen extends React.Component {
           }
           onEndReachedThreshold={0}
         />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: "90%",
+            alignSelf: "center",
+          }}
+        >
+          <Text style={{ color: colors.medium }}>
+            {this.state.data.length}/{this.state.totalItems}
+          </Text>
+          <Text>({this.state.page})</Text>
+        </View>
         {this.state.loading && !this.state.refreshing && (
           <ActivityIndicator
             size={25}

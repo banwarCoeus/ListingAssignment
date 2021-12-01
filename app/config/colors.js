@@ -9,4 +9,5 @@ export default {
   darkLight: "#B6B6B6",
   dark: "#0C0C0C",
   danger: "#ff5252",
+  purple: "#6C3EC3",
 };

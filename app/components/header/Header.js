@@ -16,14 +16,20 @@ export default class Screen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.icon}>
-          <MaterialCommunityIcons
-            name="menu"
-            size={27}
-            color={colors.darkLight}
-          />
-        </View>
+      <View style={[styles.container, this.props.headerContainerStyle]}>
+        <TouchableWithoutFeedback onPress={this.props.onLeftIconPress}>
+          <View style={styles.icon}>
+            <MaterialCommunityIcons
+              name={this.props.leftIconName}
+              size={27}
+              color={
+                this.props.leftIconColor
+                  ? this.props.leftIconColor
+                  : colors.darkLight
+              }
+            />
+          </View>
+        </TouchableWithoutFeedback>
         {this.state.searchBar ? (
           <SearchBar
             placeholder={this.props.placeholder || "Search"}
@@ -36,7 +42,9 @@ export default class Screen extends React.Component {
         ) : (
           <>
             <View style={styles.text}>
-              <HeaderText>{this.props.title}</HeaderText>
+              <HeaderText headerTextStyle={this.props.headerTextStyle}>
+                {this.props.title}
+              </HeaderText>
             </View>
             <TouchableWithoutFeedback
               onPress={() => {
