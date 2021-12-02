@@ -22,6 +22,7 @@ export default class SearchBar extends React.Component {
       <View style={styles.container}>
         <TextInput
           value={this.state.searchKeyword}
+          autoFocus
           placeholder={this.props.placeholder || "Search"}
           onChangeText={(text) => {
             this.setState({ searchKeyword: text });

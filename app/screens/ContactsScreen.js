@@ -85,6 +85,7 @@ export default class ContactsScreen extends React.Component {
           leftIconName={"menu"}
           showSearch={true}
           placeholder={"Search user"}
+          onLeftIconPress={() => this.props.navigation.toggleDrawer()}
           onSearch={(keyword) => {
             this.setState({ searchKeyword: keyword });
             clearTimeout(this.timeOut);

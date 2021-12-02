@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableWithoutFeedback } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from "react-native";
 import { MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
@@ -17,19 +23,20 @@ export default class Screen extends React.Component {
   render() {
     return (
       <View style={[styles.container, this.props.headerContainerStyle]}>
-        <TouchableWithoutFeedback onPress={this.props.onLeftIconPress}>
-          <View style={styles.icon}>
-            <MaterialCommunityIcons
-              name={this.props.leftIconName}
-              size={27}
-              color={
-                this.props.leftIconColor
-                  ? this.props.leftIconColor
-                  : colors.darkLight
-              }
-            />
-          </View>
-        </TouchableWithoutFeedback>
+        <TouchableOpacity
+          style={styles.icon}
+          onPress={this.props.onLeftIconPress}
+        >
+          <MaterialCommunityIcons
+            name={this.props.leftIconName}
+            size={27}
+            color={
+              this.props.leftIconColor
+                ? this.props.leftIconColor
+                : colors.darkLight
+            }
+          />
+        </TouchableOpacity>
         {this.state.searchBar ? (
           <SearchBar
             placeholder={this.props.placeholder || "Search"}
@@ -46,17 +53,16 @@ export default class Screen extends React.Component {
                 {this.props.title}
               </HeaderText>
             </View>
-            <TouchableWithoutFeedback
+            <TouchableOpacity
+              style={styles.icon}
               onPress={() => {
                 if (this.props.showSearch) this.setState({ searchBar: true });
               }}
             >
-              <View style={styles.icon}>
-                {this.props.showSearch && (
-                  <Octicons name="search" size={20} color={colors.darkLight} />
-                )}
-              </View>
-            </TouchableWithoutFeedback>
+              {this.props.showSearch && (
+                <Octicons name="search" size={20} color={colors.darkLight} />
+              )}
+            </TouchableOpacity>
           </>
         )}
       </View>
