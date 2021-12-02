@@ -12,7 +12,7 @@ import colors from "../../config/colors";
 import HeaderText from "./HeaderText";
 import SearchBar from "../SearchBar";
 
-export default class Screen extends React.Component {
+export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

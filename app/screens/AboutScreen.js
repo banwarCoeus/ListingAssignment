@@ -50,23 +50,24 @@ export default class About extends React.Component {
           showSearch={false}
           onLeftIconPress={() => this.props.navigation.toggleDrawer()}
         />
-        <View
-          style={{
-            width: "100%",
-            paddingVertical: 20,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Image
-            // @ts-ignore
-            source={require("../assets/coeusLogo.png")}
-            style={{ width: 120, height: 120, borderRadius: 60 }}
-          />
-          <Text style={styles.headerTitle}>Coeus Solutions</Text>
-          <Text style={styles.headerSubTitle}>Software House</Text>
-        </View>
+
         <ScrollView showsVerticalScrollIndicator={false}>
+          <View
+            style={{
+              width: "100%",
+              paddingVertical: 20,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              // @ts-ignore
+              source={require("../assets/coeusLogo.png")}
+              style={{ width: 120, height: 120, borderRadius: 60 }}
+            />
+            <Text style={styles.headerTitle}>Coeus Solutions</Text>
+            <Text style={styles.headerSubTitle}>Software House</Text>
+          </View>
           <View style={{ flex: 1, paddingHorizontal: 20, paddingBottom: 20 }}>
             {aboutItems.map((item) => (
               <View key={item.title} style={{ marginTop: 10 }}>
