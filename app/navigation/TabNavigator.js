@@ -7,6 +7,7 @@ import Header from "../components/header/Header";
 import Screen from "../components/Screen";
 import GistsScreen from "../screens/Tabs/GistsScreen";
 import ReposScreen from "../screens/Tabs/ReposScreen";
+import colors from "../config/colors";
 
 const TopTab = createMaterialTopTabNavigator();
 
@@ -18,10 +19,19 @@ const TabNavigator = ({ navigation }) => (
       showSearch={false}
       onLeftIconPress={() => navigation.toggleDrawer()}
     />
-    <TopTab.Navigator>
-      <TopTab.Screen name={"Organization"} component={OrganizationsScreen} />
-      <TopTab.Screen name={"Gists"} component={GistsScreen} />
-      <TopTab.Screen name={"Repositories"} component={ReposScreen} />
+    <TopTab.Navigator
+      tabBarOptions={{
+        activeTintColor: colors.purple,
+        inactiveTintColor: colors.medium,
+        indicatorStyle: { backgroundColor: colors.purple },
+      }}
+    >
+      <TopTab.Screen
+        name={routes.ORGANIZATION}
+        component={OrganizationsScreen}
+      />
+      <TopTab.Screen name={routes.GISTS} component={GistsScreen} />
+      <TopTab.Screen name={routes.REPOSITORIES} component={ReposScreen} />
     </TopTab.Navigator>
   </Screen>
 );
