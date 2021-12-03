@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Clipboard from "expo-clipboard";
@@ -96,61 +97,74 @@ export default class UserDetailScreen extends React.Component {
             elevation: 0,
           }}
         />
-        <View style={styles.headerContainer}>
-          <Text style={styles.headerText}>User Detail</Text>
-          <Image
-            source={{
-              uri:
-                this.state.data?.avatar_url ||
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ4TKmLL_Yab3zrnGsM-6FzOgBGSm3lcXkndb1E5xQagw5YlZ9ClcBcC46v3Eq9vfBSIQ&usqp=CAU",
-            }}
-            style={styles.headerImage}
-          />
-        </View>
-        <View style={styles.detailsConatiner}>
-          <Text style={styles.name}>{this.state.data?.name || ""}</Text>
-          {this.state.data?.blog != null && this.state.data?.blog != "" ? (
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text style={styles.email}>{this.state.data?.blog || ""} </Text>
-              <TouchableOpacity
-                onPress={() => {
-                  Clipboard.setString(this.state.data?.blog);
-                  Alert.alert(
-                    "Copy Blog",
-                    "Link to the blog has been successfully copied!"
-                  );
-                }}
-              >
-                <MaterialCommunityIcons
-                  name="content-copy"
-                  color={colors.purple}
-                  size={20}
-                />
-              </TouchableOpacity>
-            </View>
-          ) : null}
-        </View>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.accountDetailsContainer}>
-            <Text style={styles.accountDetailsHeader}>Account Info</Text>
-            {accountInfoItems.map((item, index) => (
-              <InfoItem
-                key={item.key}
-                title={item.title}
-                subTitle={
-                  this.state.data?.[item.param] || "Information not available"
-                }
-                iconName={item.icon}
-              />
-            ))}
+        {this.state.loading ? (
+          <View
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <ActivityIndicator size={20} />
           </View>
-        </ScrollView>
+        ) : (
+          <>
+            <View style={styles.headerContainer}>
+              <Text style={styles.headerText}>User Detail</Text>
+              <Image
+                source={{
+                  uri:
+                    this.state.data?.avatar_url ||
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ4TKmLL_Yab3zrnGsM-6FzOgBGSm3lcXkndb1E5xQagw5YlZ9ClcBcC46v3Eq9vfBSIQ&usqp=CAU",
+                }}
+                style={styles.headerImage}
+              />
+            </View>
+            <View style={styles.detailsConatiner}>
+              <Text style={styles.name}>{this.state.data?.name || ""}</Text>
+              {this.state.data?.blog != null && this.state.data?.blog != "" ? (
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginTop: 10,
+                  }}
+                >
+                  <Text style={styles.email}>
+                    {this.state.data?.blog || ""}{" "}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => {
+                      Clipboard.setString(this.state.data?.blog);
+                      Alert.alert(
+                        "Copy Blog",
+                        "Link to the blog has been successfully copied!"
+                      );
+                    }}
+                  >
+                    <MaterialCommunityIcons
+                      name="content-copy"
+                      color={colors.purple}
+                      size={20}
+                    />
+                  </TouchableOpacity>
+                </View>
+              ) : null}
+            </View>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <View style={styles.accountDetailsContainer}>
+                <Text style={styles.accountDetailsHeader}>Account Info</Text>
+                {accountInfoItems.map((item, index) => (
+                  <InfoItem
+                    key={item.key}
+                    title={item.title}
+                    subTitle={
+                      this.state.data?.[item.param] ||
+                      "Information not available"
+                    }
+                    iconName={item.icon}
+                  />
+                ))}
+              </View>
+            </ScrollView>
+          </>
+        )}
       </Screen>
     );
   }

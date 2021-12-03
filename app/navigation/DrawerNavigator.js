@@ -7,7 +7,6 @@ import AppNavigator from "./AppNavigator";
 import colors from "../config/colors";
 import CustomDrawer from "./CustomDrawer";
 import AboutScreen from "../screens/AboutScreen";
-import TabsScreen from "../screens/TabsScreen";
 import TabNavigator from "./TabNavigator";
 
 const Drawer = createDrawerNavigator();

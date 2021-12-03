@@ -2,7 +2,9 @@ import React from "react";
 import { FlatList, Text, View } from "react-native";
 
 import listingApi from "../../api/listings";
+import ColorPicker from "../../components/ColorPicker";
 import ListItem from "../../components/ListItem";
+import colors from "../../config/colors";
 
 export default class OrganizationsScreen extends React.Component {
   constructor(props) {
@@ -10,6 +12,7 @@ export default class OrganizationsScreen extends React.Component {
     this.state = {
       loading: false,
       error: false,
+      selectedThemeColor: colors.purple,
       data: [],
     };
   }
@@ -36,6 +39,12 @@ export default class OrganizationsScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
+        <ColorPicker
+          selectedColor={this.state.selectedThemeColor}
+          onColorSelect={(color) =>
+            this.setState({ selectedThemeColor: color })
+          }
+        />
         {this.state.error && (
           <View
             style={{
@@ -56,6 +65,7 @@ export default class OrganizationsScreen extends React.Component {
               imageUrl={item.avatar_url}
               subtitle={item.node_id}
               title={item.login}
+              themeColor={this.state.selectedThemeColor}
             />
           )}
         />

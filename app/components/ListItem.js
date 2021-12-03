@@ -12,7 +12,12 @@ export default class ListItem extends React.Component {
   render() {
     return (
       <TouchableOpacity style={styles.container} onPress={this.props.onPress}>
-        <View style={styles.imageContiner}>
+        <View
+          style={[
+            styles.imageContiner,
+            { borderColor: this.props.themeColor || colors.darkLight },
+          ]}
+        >
           <Image source={{ uri: this.props.imageUrl }} style={styles.image} />
           {this.props.contactsList && (
             <View
@@ -28,10 +33,19 @@ export default class ListItem extends React.Component {
           )}
         </View>
         <View style={styles.detailsContainer}>
-          <Text style={styles.title} numberOfLines={1}>
+          <Text
+            style={[styles.title, { color: this.props.themeColor || "black" }]}
+            numberOfLines={1}
+          >
             {this.props.title}
           </Text>
-          <Text style={styles.subTitle} numberOfLines={2}>
+          <Text
+            style={[
+              styles.subTitle,
+              { color: this.props.themeColor || colors.medium },
+            ]}
+            numberOfLines={2}
+          >
             {this.props.subtitle}
           </Text>
         </View>
