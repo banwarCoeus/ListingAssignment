@@ -8,7 +8,16 @@ const searchUsers = (userName, paginationCall, page) =>
 
 const userDetail = (url) => client.get(endpointUsers + url.split("users/")[1]);
 
+const organizationsListing = () => client.get("/organizations");
+
+const reposListing = () => client.get("/orgs/engineyard/repos");
+
+const gistsListing = () => client.get("/gists");
+
 export default {
   searchUsers,
   userDetail,
+  organizationsListing,
+  gistsListing,
+  reposListing,
 };

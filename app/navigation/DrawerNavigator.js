@@ -7,6 +7,8 @@ import AppNavigator from "./AppNavigator";
 import colors from "../config/colors";
 import CustomDrawer from "./CustomDrawer";
 import AboutScreen from "../screens/AboutScreen";
+import TabsScreen from "../screens/TabsScreen";
+import TabNavigator from "./TabNavigator";
 
 const Drawer = createDrawerNavigator();
 
@@ -20,6 +22,7 @@ const DrawerNavigator = () => {
       screenOptions={{
         swipeEnabled: false,
       }}
+      drawerType={"slide"}
       drawerContent={(props) => <CustomDrawer {...props} />}
     >
       <Drawer.Screen
@@ -37,6 +40,15 @@ const DrawerNavigator = () => {
         options={{
           drawerIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" size={21} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Tab Screen"
+        component={TabNavigator}
+        options={{
+          drawerIcon: ({ color }) => (
+            <MaterialCommunityIcons name="tab" size={21} color={color} />
           ),
         }}
       />

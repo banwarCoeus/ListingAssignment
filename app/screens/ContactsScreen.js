@@ -118,6 +118,7 @@ export default class ContactsScreen extends React.Component {
           renderItem={({ item }) => (
             <ListItem
               activeStatus={item.site_admin}
+              contactsList={true}
               imageUrl={item.avatar_url}
               onPress={() =>
                 this.props.navigation.navigate(routes.USER_DETAILS, {
