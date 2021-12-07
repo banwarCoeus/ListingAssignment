@@ -1,0 +1,6 @@
+module Pods_ContactsAssignmentClassComponent {
+  umbrella header "Pods-ContactsAssignmentClassComponent-umbrella.h"
+
+  export *
+  module * { export * }
+}

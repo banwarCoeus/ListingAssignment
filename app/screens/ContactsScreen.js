@@ -12,8 +12,11 @@ import {
   Platform,
   Text,
   View,
+  NativeModules,
 } from "react-native";
 import colors from "../config/colors";
+
+const { NativeColorPicker } = NativeModules;
 
 export default class ContactsScreen extends React.Component {
   constructor(props) {
@@ -33,6 +36,9 @@ export default class ContactsScreen extends React.Component {
   }
 
   componentDidMount() {
+    NativeColorPicker.showColorPicker({ supportsAlpha: true }, (color) => {
+      console.log(color);
+    });
     this.setState({ refreshing: true });
     this.requestContactsList(this.state.searchKeyword, false, 1);
   }
@@ -59,7 +65,7 @@ export default class ContactsScreen extends React.Component {
     const response = await contactsApi.searchUsers(...args);
     this.setState({ loading: false, refreshing: false });
 
-    console.log("Api Called", response.ok);
+    // console.log("Api Called", response.ok);
 
     if (!response.ok && !args[1]) return this.setState({ error: true });
 
