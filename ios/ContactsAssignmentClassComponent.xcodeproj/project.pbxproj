@@ -16,7 +16,9 @@
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		F82AA379275F54DA00CA2880 /* RNTDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F82AA378275F54DA00CA2880 /* RNTDatePicker.m */; };
-		F82AA37B275F5ADE00CA2880 /* RNTDatePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F82AA37A275F5ADE00CA2880 /* RNTDatePickerManager.m */; };
+		F85F91E527608A6400BA3E12 /* RNTPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F85F91E427608A6400BA3E12 /* RNTPageControl.m */; };
+		F85F91EA27609D0500BA3E12 /* NativePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85F91E927609D0500BA3E12 /* NativePageControl.swift */; };
+		F85F91EC2760A16700BA3E12 /* RNTDatePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F85F91EB2760A16700BA3E12 /* RNTDatePickerManager.m */; };
 		F8D01F29275E3F6A0035D1D5 /* NativeColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D01F28275E3F6A0035D1D5 /* NativeColorPicker.swift */; };
 		F8D01F2B275E3FF90035D1D5 /* NativeColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D01F2A275E3FF90035D1D5 /* NativeColorPicker.m */; };
 /* End PBXBuildFile section */
@@ -38,8 +40,10 @@
 		E2F52C55B6644A76BD3923D7 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "ContactsAssignmentClassComponent/noop-file.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F82AA378275F54DA00CA2880 /* RNTDatePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTDatePicker.m; sourceTree = "<group>"; };
-		F82AA37A275F5ADE00CA2880 /* RNTDatePickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTDatePickerManager.m; sourceTree = "<group>"; };
 		F82AA37C275F5B2900CA2880 /* RNTDatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTDatePicker.h; sourceTree = "<group>"; };
+		F85F91E427608A6400BA3E12 /* RNTPageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTPageControl.m; sourceTree = "<group>"; };
+		F85F91E927609D0500BA3E12 /* NativePageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativePageControl.swift; sourceTree = "<group>"; };
+		F85F91EB2760A16700BA3E12 /* RNTDatePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNTDatePickerManager.m; path = ../../../../.Trash/RNTDatePickerManager.m; sourceTree = "<group>"; };
 		F8D01F28275E3F6A0035D1D5 /* NativeColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeColorPicker.swift; sourceTree = "<group>"; };
 		F8D01F2A275E3FF90035D1D5 /* NativeColorPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeColorPicker.m; sourceTree = "<group>"; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-ContactsAssignmentClassComponent/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
@@ -71,10 +75,12 @@
 				E2F52C55B6644A76BD3923D7 /* noop-file.swift */,
 				6E93B6DA0CA0472A9254CC13 /* ContactsAssignmentClassComponent-Bridging-Header.h */,
 				F8D01F28275E3F6A0035D1D5 /* NativeColorPicker.swift */,
+				F85F91E927609D0500BA3E12 /* NativePageControl.swift */,
 				F8D01F2A275E3FF90035D1D5 /* NativeColorPicker.m */,
 				F82AA378275F54DA00CA2880 /* RNTDatePicker.m */,
+				F85F91EB2760A16700BA3E12 /* RNTDatePickerManager.m */,
 				F82AA37C275F5B2900CA2880 /* RNTDatePicker.h */,
-				F82AA37A275F5ADE00CA2880 /* RNTDatePickerManager.m */,
+				F85F91E427608A6400BA3E12 /* RNTPageControl.m */,
 			);
 			name = ContactsAssignmentClassComponent;
 			sourceTree = "<group>";
@@ -309,7 +315,9 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				F82AA379275F54DA00CA2880 /* RNTDatePicker.m in Sources */,
-				F82AA37B275F5ADE00CA2880 /* RNTDatePickerManager.m in Sources */,
+				F85F91EC2760A16700BA3E12 /* RNTDatePickerManager.m in Sources */,
+				F85F91E527608A6400BA3E12 /* RNTPageControl.m in Sources */,
+				F85F91EA27609D0500BA3E12 /* NativePageControl.swift in Sources */,
 				F8D01F29275E3F6A0035D1D5 /* NativeColorPicker.swift in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
 				0E2F9B6BAEFB4FEE886B2D4E /* noop-file.swift in Sources */,
@@ -429,7 +437,9 @@
 				LIBRARY_SEARCH_PATHS = "\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_MODULE_NAME = ContactsAssignmentClassComponent;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "ContactsAssignmentClassComponent-Bridging-Header";
 			};
 			name = Debug;
 		};
@@ -479,7 +489,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = "\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_MODULE_NAME = ContactsAssignmentClassComponent;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "ContactsAssignmentClassComponent-Bridging-Header";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

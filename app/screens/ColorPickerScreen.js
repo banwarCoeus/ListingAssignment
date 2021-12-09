@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, View, requireNativeComponent } from "react-native";
+import { Button, View, NativeModules } from "react-native";
 
-var RNTDatePicker = requireNativeComponent("RNTDatePicker");
+var { NativeColorPicker } = NativeModules;
 
 export default class ColorPickerScreen extends React.Component {
   constructor(props) {
@@ -11,14 +11,14 @@ export default class ColorPickerScreen extends React.Component {
     };
   }
 
-  //   openColorPicker = async () => {
-  //     try {
-  //       const response = await NativeColorPicker.showColorPickerWithPromise();
-  //       console.log(response);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
+  openColorPicker = async () => {
+    try {
+      const response = await NativeColorPicker.showColorPickerWithPromise();
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   render() {
     return (
@@ -30,13 +30,7 @@ export default class ColorPickerScreen extends React.Component {
           alignItems: "center",
         }}
       >
-        <RNTDatePicker
-          preferredDatePickerStyle={1}
-          datePickerMode={1}
-          value={new Date(2300, 10, 20)}
-          style={{ width: "100%", height: 200 }}
-          onChange={(event) => console.log(event.nativeEvent)}
-        />
+        <Button title="Pick Color" onPress={this.openColorPicker} />
       </View>
     );
   }
