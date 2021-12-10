@@ -7,16 +7,12 @@ import routes from "../navigation/routes";
 import Screen from "../components/Screen";
 import {
   ActivityIndicator,
-  Button,
   FlatList,
   Platform,
   Text,
   View,
-  NativeModules,
 } from "react-native";
 import colors from "../config/colors";
-
-const { NativeColorPicker } = NativeModules;
 
 export default class ContactsScreen extends React.Component {
   constructor(props) {
@@ -36,9 +32,6 @@ export default class ContactsScreen extends React.Component {
   }
 
   componentDidMount() {
-    NativeColorPicker.showColorPicker({ supportsAlpha: true }, (color) => {
-      console.log(color);
-    });
     this.setState({ refreshing: true });
     this.requestContactsList(this.state.searchKeyword, false, 1);
   }

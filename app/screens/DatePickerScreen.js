@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, View, requireNativeComponent } from "react-native";
+import { View, requireNativeComponent } from "react-native";
 
 var RNTDatePicker = requireNativeComponent("RNTDatePicker");
 
@@ -10,15 +10,6 @@ export default class DatePickerScreen extends React.Component {
       bgColor: "#fff",
     };
   }
-
-  //   openColorPicker = async () => {
-  //     try {
-  //       const response = await NativeColorPicker.showColorPickerWithPromise();
-  //       console.log(response);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
 
   render() {
     return (
@@ -31,10 +22,12 @@ export default class DatePickerScreen extends React.Component {
         }}
       >
         <RNTDatePicker
-          preferredDatePickerStyle={1}
-          datePickerMode={1}
+          preferredDatePickerStyle={2}
+          datePickerMode={2}
+          showCalendar={false}
           value={new Date(2300, 10, 20)}
-          style={{ width: "100%", height: 200 }}
+          style={{ width: "100%", height: 500 }}
+          //   onDateChanged={(date) => console.log(date.nativeEvent)}
           onChange={(event) => console.log(event.nativeEvent)}
         />
       </View>
